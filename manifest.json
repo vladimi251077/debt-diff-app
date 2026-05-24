@@ -1,0 +1,12 @@
+{
+  "name": "Разница — учёт двух людей",
+  "short_name": "Разница",
+  "description": "Личное offline-приложение для учёта двух сторон и разницы между ними.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b1120",
+  "theme_color": "#111827",
+  "orientation": "portrait",
+  "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
