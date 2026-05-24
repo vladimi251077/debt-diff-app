@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Разница">
+  <title>Разница — учёт двух людей</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon.svg">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Личный учёт</p>
+        <h1>Разница</h1>
+        <p id="statusText" class="status">Загружаю данные…</p>
+      </div>
+      <button id="themeBtn" class="ghost" type="button">Тема</button>
+    </header>
+
+    <section id="backupWarn" class="warning hidden">
+      <b>Нужна копия.</b> Резервную копию не делали больше 3 дней.
+      <button id="quickBackupBtn" type="button">Сделать</button>
+    </section>
+
+    <section class="cards">
+      <article class="card person-card">
+        <input id="nameA" class="name-input" value="Человек 1" aria-label="Имя первого человека">
+        <div id="totalA" class="amount">0 ₽</div>
+      </article>
+      <article class="card person-card">
+        <input id="nameB" class="name-input" value="Человек 2" aria-label="Имя второго человека">
+        <div id="totalB" class="amount">0 ₽</div>
+      </article>
+    </section>
+
+    <section class="card difference-card">
+      <span>Разница</span>
+      <strong id="diffAmount">0 ₽</strong>
+      <p id="diffText">Пока одинаково.</p>
+    </section>
+
+    <section class="card form-card">
+      <h2 id="formTitle">Новая запись</h2>
+      <input id="editId" type="hidden">
+      <label>Сумма
+        <input id="amountInput" inputmode="decimal" placeholder="Например 5000">
+      </label>
+      <label>Сторона
+        <select id="sideSelect">
+          <option value="a">Человек 1</option>
+          <option value="b">Человек 2</option>
+        </select>
+      </label>
+      <label>Действие
+        <select id="signSelect">
+          <option value="1">Добавить</option>
+          <option value="-1">Вычесть</option>
+        </select>
+      </label>
+      <label>Дата
+        <input id="dateInput" type="datetime-local">
+      </label>
+      <label>Комментарий
+        <input id="commentInput" placeholder="Необязательно">
+      </label>
+      <div class="actions-grid">
+        <button id="saveBtn" class="primary" type="button">Сохранить</button>
+        <button id="cancelEditBtn" class="secondary hidden" type="button">Отмена</button>
+      </div>
+    </section>
+
+    <section class="card tools-card">
+      <h2>Копии и перенос</h2>
+      <div class="actions-grid">
+        <button id="exportJsonBtn" class="secondary" type="button">Backup JSON</button>
+        <button id="exportCsvBtn" class="secondary" type="button">CSV</button>
+        <label class="file-btn">Импорт JSON
+          <input id="importFile" type="file" accept="application/json,.json">
+        </label>
+      </div>
+      <p class="small">Можно импортировать backup этого приложения или старый Whalefy/EconoMe. Реальные данные не уходят в интернет.</p>
+    </section>
+
+    <section class="card history-card">
+      <div class="section-head">
+        <h2>История</h2>
+        <button id="clearBtn" class="danger" type="button">Очистить</button>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </section>
+  </main>
+
+  <template id="rowTemplate">
+    <div class="row">
+      <div>
+        <b class="row-title"></b>
+        <p class="row-meta"></p>
+        <p class="row-comment"></p>
+      </div>
+      <div class="row-right">
+        <strong class="row-amount"></strong>
+        <button class="edit-btn" type="button">Изм.</button>
+        <button class="delete-btn" type="button">Удал.</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>
