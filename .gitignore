@@ -1,0 +1,5 @@
+backup_*.json
+*backup*.json
+*.csv
+data/
+.DS_Store
