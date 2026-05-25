@@ -11,7 +11,7 @@
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icon.svg">
-  <link rel="stylesheet" href="./style.css?v=20260524-panels2">
+  <link rel="stylesheet" href="./style.css?v=20260524-autobackup1">
 </head>
 <body>
   <main class="app">
@@ -106,14 +106,15 @@
 
     <section id="toolsSection" class="card tools-card panel-section hidden">
       <div class="section-head"><h2>Копии и перенос</h2><button type="button" class="close-panel" data-close-panel>Скрыть</button></div>
+      <label class="toggle-row"><span>Авто-backup после сохранения</span><input id="autoBackupToggle" type="checkbox" checked></label>
       <div class="actions-grid"><button id="exportJsonBtn" class="secondary" type="button">Backup JSON</button><button id="exportCsvBtn" class="secondary" type="button">CSV</button><label class="file-btn">Импорт JSON<input id="importFile" type="file" accept="application/json,.json"></label></div>
-      <p class="small">Можно импортировать backup этого приложения или старый Whalefy/EconoMe. Реальные данные не уходят в интернет.</p>
+      <p class="small">Данные всегда сохраняются в телефоне. Авто-backup дополнительно скачивает JSON-файл после каждой транзакции. На iPhone загрузки могут попадать в “Файлы” или “Загрузки”.</p>
     </section>
   </main>
 
   <button id="fabAdd" class="fab" type="button">+ Транзакция</button>
 
   <template id="rowTemplate"><div class="row"><div><b class="row-title"></b><p class="row-meta"></p><p class="row-comment"></p></div><div class="row-right"><strong class="row-amount"></strong><button class="edit-btn" type="button">Изм.</button><button class="delete-btn" type="button">Удал.</button></div></div></template>
-  <script src="./app.js?v=20260524-panels2"></script>
+  <script src="./app.js?v=20260524-autobackup1"></script>
 </body>
 </html>
