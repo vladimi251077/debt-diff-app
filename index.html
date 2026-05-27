@@ -17,7 +17,6 @@
   <main class="app">
     <header class="hero">
       <div>
-        <p class="eyebrow">Личный учёт</p>
         <h1>Разница</h1>
         <p id="statusText" class="status">Загружаю данные…</p>
       </div>
@@ -27,6 +26,29 @@
     <section id="backupWarn" class="warning hidden">
       <b>Нужна копия.</b> Резервную копию не делали больше 3 дней.
       <button id="quickBackupBtn" type="button">Сделать</button>
+    </section>
+
+    <section class="card difference-card" id="topSummary">
+      <span>Разница</span>
+      <strong id="diffAmount">0 ₽</strong>
+      <div class="split-bar"><i id="splitA"></i><i id="splitB"></i></div>
+      <p id="diffText">Пока одинаково.</p>
+    </section>
+
+    <section class="highlights">
+      <h2>Хайлайты</h2>
+      <div class="highlights-grid">
+        <article class="card highlight-card"><span>Месяц</span><strong id="monthDiff">0 ₽</strong><p id="monthText">Нет записей</p><i class="accent-line"></i></article>
+        <article class="card highlight-card"><span>Неделя</span><strong id="weekDiff">0 ₽</strong><p id="weekText">Нет записей</p><i class="accent-line week"></i></article>
+      </div>
+    </section>
+
+    <section class="card nav-card">
+      <h2>Навигация</h2>
+      <button type="button" class="nav-row" data-target="formSection"><span>+ Транзакция</span><b>›</b></button>
+      <button type="button" class="nav-row" data-target="historySection"><span>≡ История</span><b>›</b></button>
+      <button type="button" class="nav-row" data-target="analyticsSection"><span>◔ Аналитика</span><b>›</b></button>
+      <button type="button" class="nav-row" data-target="toolsSection"><span>⌁ Копии и перенос</span><b>›</b></button>
     </section>
 
     <section class="cards">
@@ -40,15 +62,9 @@
       </article>
     </section>
 
-    <section class="card difference-card">
-      <span>Разница</span>
-      <strong id="diffAmount">0 ₽</strong>
-      <p id="diffText">Пока одинаково.</p>
-    </section>
-
-    <section class="card stats-card">
+    <section id="analyticsSection" class="card stats-card">
       <div class="section-head">
-        <h2>Статистика</h2>
+        <h2>Аналитика</h2>
         <select id="statsLimit" class="mini-select" aria-label="Период статистики">
           <option value="6">6 месяцев</option>
           <option value="12">12 месяцев</option>
@@ -56,78 +72,44 @@
         </select>
       </div>
       <div class="stats-summary">
-        <div><span>Текущий месяц</span><strong id="monthDiff">0 ₽</strong><small id="monthText">Нет записей</small></div>
+        <div><span>Текущий месяц</span><strong id="monthDiffSummary">0 ₽</strong><small id="monthTextSummary">Нет записей</small></div>
         <div><span>Средний месяц</span><strong id="avgMonthDiff">0 ₽</strong><small id="avgMonthText">По всем месяцам</small></div>
       </div>
       <div id="monthlyStats" class="monthly-list"></div>
     </section>
 
-    <section class="card form-card">
-      <h2 id="formTitle">Новая запись</h2>
+    <section id="formSection" class="card form-card">
+      <h2 id="formTitle">Новая транзакция</h2>
       <input id="editId" type="hidden">
       <label>Сумма
         <input id="amountInput" inputmode="decimal" placeholder="Например 5000">
       </label>
       <label>Сторона
-        <select id="sideSelect">
-          <option value="a">Человек 1</option>
-          <option value="b">Человек 2</option>
-        </select>
+        <select id="sideSelect"><option value="a">Человек 1</option><option value="b">Человек 2</option></select>
       </label>
       <label>Действие
-        <select id="signSelect">
-          <option value="1">Добавить</option>
-          <option value="-1">Вычесть</option>
-        </select>
+        <select id="signSelect"><option value="1">Добавить</option><option value="-1">Вычесть</option></select>
       </label>
-      <label>Дата
-        <input id="dateInput" type="datetime-local">
-      </label>
-      <label>Комментарий
-        <input id="commentInput" placeholder="Необязательно">
-      </label>
-      <div class="actions-grid">
-        <button id="saveBtn" class="primary" type="button">Сохранить</button>
-        <button id="cancelEditBtn" class="secondary hidden" type="button">Отмена</button>
-      </div>
+      <label>Дата<input id="dateInput" type="datetime-local"></label>
+      <label>Комментарий<input id="commentInput" placeholder="Необязательно"></label>
+      <div class="actions-grid"><button id="saveBtn" class="primary" type="button">Сохранить</button><button id="cancelEditBtn" class="secondary hidden" type="button">Отмена</button></div>
     </section>
 
-    <section class="card tools-card">
+    <section id="toolsSection" class="card tools-card">
       <h2>Копии и перенос</h2>
-      <div class="actions-grid">
-        <button id="exportJsonBtn" class="secondary" type="button">Backup JSON</button>
-        <button id="exportCsvBtn" class="secondary" type="button">CSV</button>
-        <label class="file-btn">Импорт JSON
-          <input id="importFile" type="file" accept="application/json,.json">
-        </label>
-      </div>
+      <div class="actions-grid"><button id="exportJsonBtn" class="secondary" type="button">Backup JSON</button><button id="exportCsvBtn" class="secondary" type="button">CSV</button><label class="file-btn">Импорт JSON<input id="importFile" type="file" accept="application/json,.json"></label></div>
       <p class="small">Можно импортировать backup этого приложения или старый Whalefy/EconoMe. Реальные данные не уходят в интернет.</p>
     </section>
 
-    <section class="card history-card">
-      <div class="section-head">
-        <h2>История</h2>
-        <button id="clearBtn" class="danger" type="button">Очистить</button>
-      </div>
+    <section id="historySection" class="card history-card">
+      <div class="section-head"><h2>История</h2><button id="clearBtn" class="danger" type="button">Очистить</button></div>
       <div id="historyList" class="history-list"></div>
     </section>
   </main>
 
-  <template id="rowTemplate">
-    <div class="row">
-      <div>
-        <b class="row-title"></b>
-        <p class="row-meta"></p>
-        <p class="row-comment"></p>
-      </div>
-      <div class="row-right">
-        <strong class="row-amount"></strong>
-        <button class="edit-btn" type="button">Изм.</button>
-        <button class="delete-btn" type="button">Удал.</button>
-      </div>
-    </div>
-  </template>
+  <button id="fabAdd" class="fab" type="button">+ Транзакция</button>
 
+  <template id="rowTemplate"><div class="row"><div><b class="row-title"></b><p class="row-meta"></p><p class="row-comment"></p></div><div class="row-right"><strong class="row-amount"></strong><button class="edit-btn" type="button">Изм.</button><button class="delete-btn" type="button">Удал.</button></div></div></template>
   <script src="./app.js"></script>
 </body>
 </html>
